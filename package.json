@@ -1,12 +1,13 @@
 {
   "name": "notificationservice",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^17.2.2",
     "ethers": "^6.15.0",
     "express": "^5.1.0",
+    "mongoose": "^8.18.1",
     "nodemailer": "^7.0.6",
     "sequelize": "^6.37.7",
     "tedious": "^18.6.1"
