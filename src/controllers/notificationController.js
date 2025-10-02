@@ -1,6 +1,7 @@
 import express from 'express'
 import notificationSchema from '../models/notification'
 import { json, where } from 'sequelize';
+import sendEmail from '../services/emailService';
 
 const createNotification = async (req, res) => {
     try {
@@ -55,6 +56,19 @@ const deleteNotification = async (req, res) => {
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
+    }
+}
+
+const notifyDeedTransaction = async (req,res) => {
+    try{
+        const {buyerEmail, sellerEmail, deedDetails} = req.body;
+
+        await sendEmail(
+            buyerEmail,
+            
+        )
+    }catch(e){
+
     }
 }
 
