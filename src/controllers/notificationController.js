@@ -71,9 +71,20 @@ const notifyDeedTransaction = async (req, res) => {
             <p>Your transaction is confirmed.</p>
             <pre>${JSON.stringify(deedDetails, null, 2)}</pre>`
 
-        )
-    } catch (e) {
+        );
 
+        await sendEmail(
+            sellerEmail,
+            "Deed Transaction Successful",
+            `Your deed transaction was successful. Details: ${JSON.stringify(deedDetails)}`,
+            `<h2>Deed Transaction Successful</h2>
+            <p>Your transaction is confirmed.</p>
+            <pre>${JSON.stringify(deedDetails, null, 2)}</pre>`
+        );
+
+        res.status(200).json({ message: "Emails sent successfully!" });
+    } catch (e) {
+         res.status(500).json({ message: "Failed to send emails", error });
     }
 }
 
@@ -82,4 +93,5 @@ module.exports = {
     getNotifications,
     getNotificationById,
     deleteNotification,
+    notifyDeedTransaction
 };
