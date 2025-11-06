@@ -2,6 +2,7 @@
   "name": "notificationservice",
   "version": "1.0.0",
   "main": "app.js",
+  "type":"module",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^17.2.2",
