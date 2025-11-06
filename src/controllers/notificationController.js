@@ -90,13 +90,27 @@ const notifyDeedTransaction = async (req, res) => {
 
 const sendMessages = async (req,res) => {
     try{
-        const {senderName, senderEmail, senderRole, recipientRole, recipientEmail, subject,message} =   req.body;
+        const {senderName, senderEmail, senderRole, recipientRole, recipientEmail,recipientName, subject,message} =   req.body;
 
-        if(!senderEmail || !senderName || !senderRole || !recipientRole || !recipientEmail || !subject || !message){
+        if(!senderEmail || !senderName || !senderRole || !recipientRole || !recipientEmail || !recipientName || !subject || !message){
             return res.status(400).json({ error: "Missing required fields" });
         }
+
+        const newMessage = await notificationSchema.create({
+            senderEmail: senderEmail,
+            senderName: senderName,
+            senderRole: senderRole,
+            recipientRole: recipientRole,
+            recipientEmail: recipientEmail,
+            recipientName: recipientName,
+            subject: subject,
+            message: message,
+            isRead: false,
+            timeStamp: new Date()
+        });
     }catch(error){
-        console.error("Failed to send messages!")
+        console.error(error);
+        res.status(500).json({ error: "Failed to send message" });
     }
 }
 
