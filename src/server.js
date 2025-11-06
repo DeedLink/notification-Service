@@ -3,9 +3,12 @@ import dotenv from 'dotenv';
 import notificationRoutes from './routes/notificationRoutes.js';
 import verificationRoutes from'./routes/verification.js';
 import deedNotificationRoutes from './routes/deedNotification.js';
+import cors from "cors";
 
 dotenv.config();
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 

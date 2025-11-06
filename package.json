@@ -2,9 +2,10 @@
   "name": "notificationservice",
   "version": "1.0.0",
   "main": "app.js",
-  "type":"module",
+  "type": "module",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "ethers": "^6.15.0",
     "express": "^5.1.0",
