@@ -108,6 +108,8 @@ const sendMessages = async (req,res) => {
             isRead: false,
             timeStamp: new Date()
         });
+
+        res.status(200).json({message: "Message send Successfully", newMessage});
     }catch(error){
         console.error(error);
         res.status(500).json({ error: "Failed to send message" });
