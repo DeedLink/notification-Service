@@ -88,10 +88,23 @@ const notifyDeedTransaction = async (req, res) => {
     }
 }
 
+const sendMessages = async (req,res) => {
+    try{
+        const {senderName, senderEmail, senderRole, recipientRole, recipientEmail, subject,message} =   req.body;
+
+        if(!sendEmail || !senderName || !senderRole || !recipientRole || !recipientEmail || !subject || !message){
+            console.log("error! required all the fileds!");
+        }
+    }catch(error){
+        console.error("Failed to send messages!")
+    }
+}
+
 module.exports = {
     createNotification,
     getNotifications,
     getNotificationById,
     deleteNotification,
-    notifyDeedTransaction
+    notifyDeedTransaction,
+    sendMessages
 };
