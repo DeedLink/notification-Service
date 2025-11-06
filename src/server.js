@@ -1,23 +1,38 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import notificationRoutes from './routes/notificationRoutes.js';
-import verificationRoutes from'./routes/verification.js';
-import deedNotificationRoutes from './routes/deedNotification.js';
+import express from "express";
+import dotenv from "dotenv";
 import cors from "cors";
 
+import notificationRoutes from "./routes/notificationRoutes.js";
+import verificationRoutes from "./routes/verification.js";
+import deedNotificationRoutes from "./routes/deedNotification.js";
+
 dotenv.config();
+
 const app = express();
 
-app.use(cors());
+
+const allowedOrigins = [
+    "https://notification-service-beta-opal.vercel.app"
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+}));
+
+
+app.options("*", cors());
+
 
 app.use(express.json());
 
-app.use('/api/notifications', notificationRoutes);
 
-app.use('/api/verfication',verificationRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use("/api/verification", verificationRoutes);
+app.use("/api/verification", deedNotificationRoutes);
 
-app.use('/api/verfication',deedNotificationRoutes);
 
-const PORT = process.env.PORT ||5005;
-app.listen(PORT, ()=> console.log(`Notification service running on port: ${PORT}`));
-
+const PORT = process.env.PORT || 5005;
+app.listen(PORT, () => console.log(`✅ Notification service running on port ${PORT}`));
