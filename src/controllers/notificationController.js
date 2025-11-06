@@ -92,7 +92,7 @@ const sendMessages = async (req,res) => {
     try{
         const {senderName, senderEmail, senderRole, recipientRole, recipientEmail, subject,message} =   req.body;
 
-        if(!sendEmail || !senderName || !senderRole || !recipientRole || !recipientEmail || !subject || !message){
+        if(!senderEmail || !senderName || !senderRole || !recipientRole || !recipientEmail || !subject || !message){
             return res.status(400).json({ error: "Missing required fields" });
         }
     }catch(error){

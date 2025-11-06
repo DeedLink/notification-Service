@@ -17,6 +17,10 @@ const notificationSchema = new mongoose.Schema ({
     senderEmail: {
         type: String
     },
+    
+    senderRole: {
+        type: String
+    },
 
     recipientRole: {
         type: String,
@@ -25,6 +29,11 @@ const notificationSchema = new mongoose.Schema ({
 
     recipientEmail: {
         type: String
+    },
+
+    recipientName: {
+        type: String,
+        required: false
     },
 
     subject: {
