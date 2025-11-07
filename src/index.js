@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-
 import notificationRoutes from "./routes/notificationRoutes.js";
 import verificationRoutes from "./routes/verification.js";
 import deedNotificationRoutes from "./routes/deedNotification.js";
@@ -17,7 +16,6 @@ app.use(cors({
 }));
 
 app.use(express.json());
-app.use(bodyParser.json());
 
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/verification", verificationRoutes);
