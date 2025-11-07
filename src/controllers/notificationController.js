@@ -23,7 +23,7 @@ const createNotification = async (req, res) => {
 
 const getNotifications = async (req, res) => {
     try {
-        const notifications = await notificationSchema.findAll();
+        const notifications = await notificationSchema.find().sort({date: -1});
         res.json(notifications);
     } catch (error) {
         res.status(500).json({ error: error.message });
