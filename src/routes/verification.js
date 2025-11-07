@@ -1,6 +1,6 @@
 import express from "express";
 import nodemailer from "nodemailer";
-import { generateOTP } from "../utils/generateOTP.js";
+import generateOTP from "../utils/generateOTP.js";
 
 const router = express.Router();
 
