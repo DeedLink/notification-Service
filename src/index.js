@@ -17,5 +17,5 @@ app.use("/api/notifications", notificationRoutes);
 app.use("/api/verification", verificationRoutes);
 app.use("/api/deed-notification", deedNotificationRoutes);
 
-const PORT = process.env.PORT || 5005;
+const PORT = process.env.PORT || 5007;
 app.listen(PORT, () => console.log(`✅ Notification service running on port ${PORT}`));
