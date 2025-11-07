@@ -17,7 +17,7 @@ router.post("/", createNotification);
 router.post("/message", sendMessages);
 
 //Get sen messages by user
-router.get("/sentMessages", getSentMessages)
+router.get("/sentMessages/:userEmail", getSentMessages)
 
 // Get all notifications
 router.get("/", getNotifications);
