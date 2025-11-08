@@ -141,6 +141,15 @@ const getSentMessages = async (req,res) => {
   }
 } ;
 
+const getReceiveMessages = async (req,res) => {
+  try{
+
+  }catch(error){
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch sent messages by user!" });
+  }
+}
+
 export {
   createNotification,
   getNotifications,
@@ -148,5 +157,6 @@ export {
   deleteNotification,
   notifyDeedTransaction,
   sendMessages,
-  getSentMessages
+  getSentMessages,
+  getReceiveMessages
 };
