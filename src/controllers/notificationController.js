@@ -158,5 +158,5 @@ export {
   notifyDeedTransaction,
   sendMessages,
   getSentMessages,
-  getReceiveMessages
+  getReceiveMessages,
 };
