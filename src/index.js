@@ -5,6 +5,7 @@ import { connectDb } from "./config/db.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
 import verificationRoutes from "./routes/verification.js";
 import deedNotificationRoutes from "./routes/deedNotification.js";
+import "./workers/emailWorker.js";
 
 dotenv.config();
 connectDb();
@@ -18,4 +19,4 @@ app.use("/api/verification", verificationRoutes);
 app.use("/api/deed-notification", deedNotificationRoutes);
 
 const PORT = process.env.PORT || 5007;
-app.listen(PORT, () => console.log(`✅ Notification service running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Notification service running on port ${PORT}`));

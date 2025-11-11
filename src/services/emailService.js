@@ -1,23 +1,24 @@
-import transporter from "../config/emailConfig.js";
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 
-async function sendEmail(to, subject, message, html) {
-  try {
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to,
-      subject,
-      text: message,
-      html,
-    };
+dotenv.config();
 
-    const info = await transporter.sendMail(mailOptions);
+const sendEmail = async ({ to, subject, text, html }) => {
+  const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
 
-    console.log(`Email sent to ${to}: ${info.messageId}`);
-    return info;
-  } catch (error) {
-    console.error("Error sending email:", error.message);
-    throw error;
-  }
-}
+  await transporter.sendMail({
+    from: `"DeedLink" <${process.env.EMAIL_USER}>`,
+    to,
+    subject,
+    text,
+    html,
+  });
+};
 
 export default sendEmail;
