@@ -10,7 +10,7 @@ const { USER_SERVICE_URL, INTERNAL_ACCESS_KEY } = process.env;
 async function getEmailFromWallet(walletAddress) {
   try {
     const response = await axios.get(
-      `${USER_SERVICE_URL}/api/users/email/${walletAddress}`,
+      `${USER_SERVICE_URL}/email/${walletAddress}`,
       {
         headers: {
           "x-internal-key": INTERNAL_ACCESS_KEY,
