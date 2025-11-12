@@ -9,7 +9,7 @@ async function handleEmailNotification(data) {
   }
 
   const recipientEmail = await getEmailFromWallet(ownerWalletAddress);
-  console.log(`Fetched email for wallet: `, recipientEmail);
+  //console.log(`Fetched email for wallet: `, recipientEmail);
   if (!recipientEmail) {
     console.warn(`No email found for wallet ${ownerWalletAddress}`);
     return;
