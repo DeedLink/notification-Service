@@ -1,5 +1,7 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
+
+import express from "express";
 import cors from "cors";
 import { connectDb } from "./config/db.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
@@ -7,7 +9,6 @@ import verificationRoutes from "./routes/verification.js";
 import deedNotificationRoutes from "./routes/deedNotification.js";
 import "./workers/emailWorker.js";
 
-dotenv.config();
 connectDb();
 
 const app = express();
