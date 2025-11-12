@@ -1,25 +1,18 @@
-import dotenv from "dotenv";
-import { getChannel } from "../hopping/rabbitmq.js";
-
-dotenv.config();
-
-const { RABBITMQ_QUEUE } = process.env;
+import { getChannel } from "./rabbitmq.js";
 
 export async function startConsumer(onMessage) {
   try {
     const channel = await getChannel();
-    console.log(`Listening for messages on queue: "${RABBITMQ_QUEUE}"`);
+    console.log(`Listening for messages on queue: "${process.env.RABBITMQ_QUEUE}"`);
 
     channel.consume(
-      RABBITMQ_QUEUE,
+      process.env.RABBITMQ_QUEUE,
       async (msg) => {
         if (!msg) return;
-
         try {
           const content = JSON.parse(msg.content.toString());
           console.log("Received message:", content);
           await onMessage(content);
-
           channel.ack(msg);
         } catch (err) {
           console.error("Error processing message:", err.message);
