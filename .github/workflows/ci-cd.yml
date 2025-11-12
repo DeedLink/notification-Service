@@ -41,6 +41,13 @@ jobs:
         EMAIL_USER=${{ secrets.EMAIL_USER }}
         EMAIL_PASS=${{ secrets.EMAIL_PASS }}
         PORT=5007
+        RABBITMQ_USER=${{ secrets.RABBITMQ_USER }}
+        RABBITMQ_PASS=${{ secrets.RABBITMQ_PASS }}
+        RABBITMQ_HOST=${{ secrets.RABBITMQ_HOST }}
+        RABBITMQ_PORT=${{ secrets.RABBITMQ_PORT }}
+        RABBITMQ_QUEUE=${{ secrets.RABBITMQ_QUEUE }}
+        USER_SERVICE_URL=${{ secrets.USER_SERVICE_URL }}
+        INTERNAL_ACCESS_KEY=${{ secrets.INTERNAL_ACCESS_KEY }}
         EOF
 
     - name: Build Docker Image
@@ -78,6 +85,13 @@ jobs:
           EMAIL_USER=${{ secrets.EMAIL_USER }}
           EMAIL_PASS=${{ secrets.EMAIL_PASS }}
           PORT=5007
+          RABBITMQ_USER=${{ secrets.RABBITMQ_USER }}
+          RABBITMQ_PASS=${{ secrets.RABBITMQ_PASS }}
+          RABBITMQ_HOST=${{ secrets.RABBITMQ_HOST }}
+          RABBITMQ_PORT=${{ secrets.RABBITMQ_PORT }}
+          RABBITMQ_QUEUE=${{ secrets.RABBITMQ_QUEUE }}
+          USER_SERVICE_URL=${{ secrets.USER_SERVICE_URL }}
+          INTERNAL_ACCESS_KEY=${{ secrets.INTERNAL_ACCESS_KEY }}
           EOF
 
           docker compose pull
