@@ -76,7 +76,7 @@ const notifyDeedTransaction = async (req, res) => {
        <pre>${JSON.stringify(deedDetails, null, 2)}</pre>`
     });
 
-    res.status(200).json({ message: "Emails sent successfully!" });
+    res.status(200).json({ message: "Emails sent successfully" });
   } catch (error) {
     res.status(500).json({ message: "Failed to send emails", error: error.message });
   }
