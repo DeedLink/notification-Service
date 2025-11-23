@@ -58,23 +58,23 @@ const notifyDeedTransaction = async (req, res) => {
   try {
     const { buyerEmail, sellerEmail, deedDetails } = req.body;
 
-    await sendEmail(
-      buyerEmail,
-      "Deed Transaction Successful",
-      `Your deed transaction was successful. Details: ${JSON.stringify(deedDetails)}`,
-      `<h2>Deed Transaction Successful</h2>
+    await sendEmail({
+      to: buyerEmail,
+      subject: "Deed Transaction Successful",
+      text: `Your deed transaction was successful. Details: ${JSON.stringify(deedDetails)}`,
+      html: `<h2>Deed Transaction Successful</h2>
        <p>Your transaction is confirmed.</p>
        <pre>${JSON.stringify(deedDetails, null, 2)}</pre>`
-    );
+    });
 
-    await sendEmail(
-      sellerEmail,
-      "Deed Transaction Successful",
-      `Your deed transaction was successful. Details: ${JSON.stringify(deedDetails)}`,
-      `<h2>Deed Transaction Successful</h2>
+    await sendEmail({
+      to: sellerEmail,
+      subject: "Deed Transaction Successful",
+      text: `Your deed transaction was successful. Details: ${JSON.stringify(deedDetails)}`,
+      html: `<h2>Deed Transaction Successful</h2>
        <p>Your transaction is confirmed.</p>
        <pre>${JSON.stringify(deedDetails, null, 2)}</pre>`
-    );
+    });
 
     res.status(200).json({ message: "Emails sent successfully!" });
   } catch (error) {
@@ -118,7 +118,7 @@ const sendMessages = async (req, res) => {
       recipientName,
       subject,
       message,
-      isRead,
+      isRead: false,
       timeStamp: new Date()
     });
 
@@ -143,10 +143,12 @@ const getSentMessages = async (req,res) => {
 
 const getReceiveMessages = async (req,res) => {
   try{
-
+    const {userEmail} = req.params;
+    const messages = await Notification.find({recipientEmail:userEmail});
+    res.json(messages);
   }catch(error){
     console.error(error);
-    res.status(500).json({ error: "Failed to fetch sent messages by user!" });
+    res.status(500).json({ error: "Failed to fetch received messages by user!" });
   }
 }
 

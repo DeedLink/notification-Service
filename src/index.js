@@ -3,13 +3,13 @@ dotenv.config();
 
 import express from "express";
 import cors from "cors";
-import { connectDb } from "./config/db.js";
+import { connectDB } from "./config/db.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
 import verificationRoutes from "./routes/verification.js";
 import deedNotificationRoutes from "./routes/deedNotification.js";
 import "./workers/emailWorker.js";
 
-connectDb();
+await connectDB();
 
 const app = express();
 app.use(cors());
