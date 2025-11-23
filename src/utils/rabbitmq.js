@@ -38,8 +38,7 @@ export async function getChannel() {
     return channel;
   } catch (err) {
     console.error("Failed to connect to RabbitMQ:", err.message);
-    // Retry connection after 5 seconds instead of throwing
     setTimeout(getChannel, 5000);
-    throw err; // Still throw to allow caller to handle if needed
+    throw err;
   }
 }
