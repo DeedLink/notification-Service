@@ -17,19 +17,21 @@ export async function getEmailFromWallet(walletAddress) {
 }
 
 export async function handleEmailNotification(data) {
-  console.log("Processing RabbitMQ message:", data);
+  console.log("Processing RabbitMQ message:", JSON.stringify(data, null, 2));
 
   const { ownerWalletAddress, deed, time } = data;
   if (!ownerWalletAddress || !deed) {
-    console.warn("Skipping message, missing ownerWalletAddress or deed:", data);
+    console.warn("Skipping message, missing ownerWalletAddress or deed:", JSON.stringify(data, null, 2));
     return;
   }
 
+  console.log(`Fetching email for wallet address: ${ownerWalletAddress}`);
   const recipientEmail = await getEmailFromWallet(ownerWalletAddress);
   if (!recipientEmail) {
-    console.warn(`No email found for wallet ${ownerWalletAddress}`);
+    console.warn(`No email found for wallet ${ownerWalletAddress} - email lookup failed`);
     return;
   }
+  console.log(`Found email for wallet ${ownerWalletAddress}: ${recipientEmail}`);
 
   const subject = "New Deed Sent for Registration";
   const message = `A new deed has been created for wallet: ${ownerWalletAddress} at ${time}`;

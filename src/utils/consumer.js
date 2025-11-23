@@ -8,16 +8,20 @@ export async function startConsumer(onMessage) {
     channel.consume(
       process.env.RABBITMQ_QUEUE,
       async (msg) => {
-        if (!msg) return;
+        if (!msg) {
+          console.log("Received null message, skipping...");
+          return;
+        }
         try {
           const content = JSON.parse(msg.content.toString());
-          console.log("Received message:", content);
+          console.log("Received message from queue:", JSON.stringify(content, null, 2));
           await onMessage(content);
           channel.ack(msg);
           console.log("Message processed and acknowledged successfully");
         } catch (err) {
           console.error("Error processing message:", err.message);
           console.error("Error stack:", err.stack);
+          console.error("Message content that failed:", msg.content.toString());
           channel.nack(msg, false, false);
           console.warn("Message rejected and not requeued due to processing error");
         }
